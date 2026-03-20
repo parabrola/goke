@@ -1,5 +1,8 @@
 name: Release Go Binary
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   release:
     types: [published]
