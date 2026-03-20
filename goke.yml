@@ -40,6 +40,16 @@ genmocks:
     - "mockery --name=FileSystem --recursive --output=internal/tests --outpkg=tests --filename=filesystem_mock.go"
     - "mockery --name=Process --recursive --output=internal/tests --outpkg=tests --filename=process_mock.go"
 
+release:delete:
+  run:
+    - "gh release delete ${RELEASE_VERSION} --yes"
+    - "git tag -d ${RELEASE_VERSION}"
+    - "git push origin :refs/tags/${RELEASE_VERSION}"
+
+release:create:
+  run:
+    - "gh release create ${RELEASE_VERSION} --title ${RELEASE_VERSION} --notes '' --draft"
+
 greet-cats:
   run:
     - 'echo "Hello Frey"'
